@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryMapper", "QueryMapper\QueryMapper.csproj", "{2C5258C3-D332-4F6C-AE96-B6D04BBECDCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryMapper.Tests", "QueryMapper.Tests\QueryMapper.Tests.csproj", "{285E131E-0DB6-455A-ABEE-B693A467FB8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1460DB1A-E212-4F0E-8427-B1CBA4C94F5F}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		QueryMapper.vsmdi = QueryMapper.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{70428243-6BA7-4FBB-8F5A-2774788BDDDA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = QueryMapper.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C5258C3-D332-4F6C-AE96-B6D04BBECDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5258C3-D332-4F6C-AE96-B6D04BBECDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5258C3-D332-4F6C-AE96-B6D04BBECDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5258C3-D332-4F6C-AE96-B6D04BBECDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285E131E-0DB6-455A-ABEE-B693A467FB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285E131E-0DB6-455A-ABEE-B693A467FB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285E131E-0DB6-455A-ABEE-B693A467FB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285E131E-0DB6-455A-ABEE-B693A467FB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

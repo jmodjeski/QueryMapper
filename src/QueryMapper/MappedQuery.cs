@@ -92,10 +92,30 @@ namespace QueryMapper
             {
                 query = query.Reduce();
             }
-            var result = Expression.Lambda<Func<IEnumerable<TTo>>>(
-                rewriter.Visit(expression), (IEnumerable<ParameterExpression>)null).Compile()();
 
-            return Mapper.Map(result);
+            // Handle enumerated map return type
+            // Need to check for interface as actual type may be IQueryable (EF)
+            if (query.Type.GetInterface(typeof(IEnumerable<TTo>).Name) != null)
+            {
+                var result = Expression.Lambda<Func<IEnumerable<TTo>>>(
+                    query, (IEnumerable<ParameterExpression>) null).Compile()();
+
+                return result.Select(x => Mapper.Map(x));
+            }
+            
+            // Handle single map return type (First/Single/FirstOrDefault/SingleOrDefault)
+            if (query.Type == typeof(TTo))
+            {
+                var result = Expression.Lambda<Func<TTo>>(
+                    query, (IEnumerable<ParameterExpression>) null).Compile()();
+
+                return Mapper.Map(result);
+            }
+
+            var lambda = Expression.Lambda(
+                query, (IEnumerable<ParameterExpression>) null).Compile();
+
+            return lambda.DynamicInvoke();
         }
     }
 }

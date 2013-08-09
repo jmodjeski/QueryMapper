@@ -5,9 +5,9 @@ using System.Text;
 
 namespace QueryMapper
 {
-    public interface IMapper<in TFrom, TTo>
+    public interface IMapper<in TFrom, out TTo>
     {
-        IEnumerable<TTo> Map(IEnumerable<TFrom> from);
+        TTo Map(TFrom from);
     }
 
     public class DelegatedMapper<TFrom, TTo>
@@ -20,12 +20,12 @@ namespace QueryMapper
             MapFunc = map;
         }
 
-        public IEnumerable<TTo> Map(IEnumerable<TFrom> enumerable)
+        public TTo Map(TFrom from)
         {
-            foreach(var f in enumerable)
-            {
-                yield return MapFunc(f);
-            }
+            if (from == null)
+                return default(TTo);
+
+            return MapFunc(from);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace QueryMapper.Tests.EntityFramework
 
 
         [TestMethod]
-        public void FlattenedQuery_Customer1()
+        public void EntityFramework_FlattenedQuery_Customer1()
         {
             var context = new SampleDataContext();
             var query = context.Orders.Include(o=>o.Customer).AsAutoMappedQuery<OrderDto, Order>();
@@ -42,12 +42,11 @@ namespace QueryMapper.Tests.EntityFramework
             var result = query.Where(o => o.CustomerName == "Customer 1").ToArray();
             result.Count().Should().Be(2);
 
-            Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
         }
 
         [TestMethod]
-        public void FlattenedQuery_Customer4()
+        public void EntityFramework_FlattenedQuery_Customer4()
         {
             var context = new SampleDataContext();
             var query = context.Orders.Include(o => o.Customer).AsAutoMappedQuery<OrderDto, Order>();
@@ -55,7 +54,30 @@ namespace QueryMapper.Tests.EntityFramework
             var result = query.Where(o => o.CustomerName == "Customer 4").ToArray();
             result.Count().Should().Be(1);
 
-            Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+        }
+
+        [TestMethod]
+        public void EntityFramework_FlattenedQuery_Count()
+        {
+            var context = new SampleDataContext();
+            var query = context.Orders.Include(o => o.Customer).AsAutoMappedQuery<OrderDto, Order>();
+
+            var result = query.Where(o => o.CustomerName == "Customer 1");
+            result.Count().Should().Be(2);
+
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+        }
+
+        [TestMethod]
+        public void EntityFramework_FlattenedQuery_Any()
+        {
+            var context = new SampleDataContext();
+            var query = context.Orders.Include(o => o.Customer).AsAutoMappedQuery<OrderDto, Order>();
+
+            var result = query.Where(o => o.CustomerName == "Customer 4");
+            result.Any().Should().BeTrue();
+
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result));
         }
     }
